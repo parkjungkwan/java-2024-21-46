@@ -103,6 +103,40 @@ public class MyIntStream {
         return IntStream.of(1, 2, 3).findFirst().orElse(-1);
     }
 
+    // 13
+    public List<Integer> flatMapTest() {
+        return IntStream.of(2).flatMap(MyIntStream::iter).boxed().collect(Collectors.toList());
+    }
+
+    private static IntStream iter(int i) {
+        return IntStream.iterate(i, j -> j + i).limit(5);
+    }
+
+    // 14
+    public List<Integer> generateTest() {
+        return IntStream.generate(() -> (int) (Math.random() * 100)).limit(5).boxed().collect(Collectors.toList());
+    }
+
+    // 15
+    public List<Integer> iterateTest() {
+        return IntStream.iterate(10, i -> i + 5).limit(5).boxed().collect(Collectors.toList());
+    }
+
+    // 16
+    public List<Integer> mapTest() {
+        return IntStream.range(1, 5).map(i -> i * 2).boxed().collect(Collectors.toList());
+    }
+
+    // 17
+    public int maxTest() {
+        return IntStream.range(1, 5).max().orElse(-1);
+    }
+
+    // 18
+    public boolean peekTest() {
+        return IntStream.iterate(1, i -> 1 + 5).limit(5).peek(System.out::println).noneMatch(i -> i % 3 == 0);
+    }
+
     public static void main(String[] args) {
         MyIntStream mi = new MyIntStream();
         // System.out.println("Random: " + mi.randomNum(1, 1));
@@ -116,6 +150,13 @@ public class MyIntStream {
         // 9. System.out.println(mi.countTest(0, 100));
         // 10. System.out.println(mi.distinctTest());
         // 11. System.out.println(mi.emptyTest());
-        System.out.println(mi.findFirstTest());
+        // 12. System.out.println(mi.findFirstTest());
+        // 13. System.out.println(mi.flatMapTest());
+        // 14. System.out.println(mi.generateTest());
+        // 15. System.out.println(mi.iterateTest());
+        // 16. System.out.println(mi.mapTest());
+        // 17. System.out.println(mi.maxTest());
+        System.out.println(mi.peekTest());
+
     }
 }
