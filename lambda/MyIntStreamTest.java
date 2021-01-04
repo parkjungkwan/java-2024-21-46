@@ -110,4 +110,34 @@ public class MyIntStreamTest {
         assertFalse(le.peekTest());
     }
 
+    @Test
+    public void rangeClosedTest() { // 19
+        assertTrue(asList(1, 2, 3, 4, 5).equals(le.rangeClosedTest()));
+    }
+
+    @Test // 20
+    public void reduceTest() {
+        assertEquals(55, le.reduceTest(1, 10));
+    }
+
+    @Test // 21
+    public void sequentialTest() {
+        assertTrue(asList(1, 2, 3, 4, 5).equals(le.sequentialTest()));
+    }
+
+    @Test // 22
+    public void parallelTest() {
+        assertTrue(asList(1, 2, 3, 4, 5).equals(le.parallelTest()));
+    }
+
+    @Test // 23
+    public void skipTest() {
+        assertTrue(asList(4, 5).equals(le.skipTest()));
+    }
+
+    @Test // 24
+    public void sortTest() {
+        assertTrue(asList(1, 2, 3, 4, 5).equals(le.sortTest()));
+    }
+
 }

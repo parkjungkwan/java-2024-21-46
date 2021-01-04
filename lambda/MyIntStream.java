@@ -1,29 +1,18 @@
 package lambda;
 
-import java.util.HashMap;
 import java.util.IntSummaryStatistics;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MyIntStream {
-    // 1
+    // 1.
     public List<Integer> rangeTest(int a, int b) {
-        /*
-         * Step 1. Classic Java List<Integer> ls = new ArrayList<>(); for (int i = 1; i
-         * < 5; i++) { ls.add(i); }
-         */
-        // Step 2. Arrays
-        // Arrays.asList(new Integer[] { 1, 2, 3, 4 })
-
-        // Step 3. IntStream
-
         return IntStream.range(a, b).boxed().collect(Collectors.toList());
     }
 
-    // 2. allMatch()
+    // 2.
     private static boolean evenNumber(int i) {
         return i % 2 == 0;
     }
@@ -32,9 +21,8 @@ public class MyIntStream {
         return IntStream.of(a).allMatch(MyIntStream::evenNumber);
     }
 
-    // 3. of()
+    // 3.
     public List<Integer> ofBoxTest() {
-        // returns a Stream consisting of the elements of this stream
         return IntStream.of(1, 2, 3, 4).boxed().collect(Collectors.toList());
     }
 
@@ -118,12 +106,44 @@ public class MyIntStream {
         return IntStream.iterate(1, i -> 1 + 5).limit(5).peek(System.out::println).noneMatch(i -> i % 3 == 0);
     }
 
+    // 19
+    public List<Integer> rangeClosedTest() {
+        return IntStream.rangeClosed(1, 5).boxed().collect(Collectors.toList());
+    }
+
+    // 20
+    public int reduceTest(int x, int y) {
+        return IntStream.rangeClosed(x, y).reduce(0, (a, b) -> a + b);
+    }
+
+    // 21
+    public List<Integer> sequentialTest() {
+        return IntStream.rangeClosed(1, 5).sequential().boxed().collect(Collectors.toList());
+    }
+
+    // 22
+    public List<Integer> parallelTest() {
+        return IntStream.rangeClosed(1, 5).parallel().boxed().collect(Collectors.toList());
+    }
+
+    // 23
+    public List<Integer> skipTest() {
+        return IntStream.rangeClosed(1, 5).skip(3).boxed().collect(Collectors.toList());
+    }
+
+    // 24
+    public List<Integer> sortTest() {
+        /*
+         * return IntStream.generate(() -> (int) (Math.random() *
+         * 100)).limit(5).peek(System.out::println).sorted().boxed()
+         * .collect(Collectors.toList());
+         */
+        return IntStream.of(3, 1, 5, 4, 2).sorted().boxed().collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
         MyIntStream mi = new MyIntStream();
-
-        // 8. System.out.println(mi.summaryStatisticsTest(1, 5, 100, 105));
-
-        System.out.println(mi.peekTest());
+        System.out.println(mi.sortTest());
 
     }
 }
