@@ -33,14 +33,14 @@ public class MyIntStream {
     }
 
     // 3. of()
-    public Stream<Integer> ofBoxTest() {
+    public List<Integer> ofBoxTest() {
         // returns a Stream consisting of the elements of this stream
-        return IntStream.of(1, 2, 3, 4).boxed();
+        return IntStream.of(1, 2, 3, 4).boxed().collect(Collectors.toList());
     }
 
     // 4.
-    public Stream<Object> concatTest() {
-        return Stream.concat(IntStream.of(1, 2).boxed(), Stream.of("Three"));
+    public List<Integer> concatTest() {
+        return Stream.concat(IntStream.of(1, 2).boxed(), Stream.of(3)).collect(Collectors.toList());
     }
 
     // 5.
@@ -120,27 +120,10 @@ public class MyIntStream {
 
     public static void main(String[] args) {
         MyIntStream mi = new MyIntStream();
-        // 1.
-        System.out.println(mi.rangeTest(1, 5));
-        // 2.
-        // System.out.println(mi.allMatchEvenTest(2));
-        // 3. mi.ofBoxTest().forEach(System.out::print);
-        // 4. mi.concatTest().forEach(System.out::print);
-        // 5. System.out.println(mi.collectTest());
-        // 6. System.out.println(mi.averageTest(1, 6));
-        // 7. System.out.println(mi.builderTest());
+
         // 8. System.out.println(mi.summaryStatisticsTest(1, 5, 100, 105));
-        // 9. System.out.println(mi.countTest(0, 100));
-        // 10. System.out.println(mi.distinctTest());
-        // 11. System.out.println(mi.emptyTest());
-        // 12. System.out.println(mi.findFirstTest());
-        // 13. System.out.println(mi.flatMapTest());
-        // 14. System.out.println(mi.generateTest());
-        // 15. System.out.println(mi.iterateTest());
-        // 16.
-        // System.out.println(mi.mapTest(1, 5));
-        // 17. System.out.println(mi.maxTest());
-        // System.out.println(mi.peekTest());
+
+        System.out.println(mi.peekTest());
 
     }
 }
