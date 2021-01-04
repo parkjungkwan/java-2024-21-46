@@ -10,17 +10,13 @@ public class MyIntStreamTest {
     MyIntStream le = new MyIntStream();
 
     @Test
-    public void returnList() {
-        assertEquals("1234", le.returnList(1, 5).stream().map(i -> String.valueOf(i)).collect(Collectors.joining()));
+    public void rangeTest() {
+        assertEquals("1234", le.rangeTest(1, 5).stream().map(i -> String.valueOf(i)).collect(Collectors.joining()));
     }
 
     @Test
-    public void judgeEven() {
-        assertTrue(le.matchEven(2));
+    public void allMatchEvenTest() {
+        assertTrue(le.allMatchEvenTest(2));
     }
 
-    @Test
-    public void randomNum(int a, int b) {
-        assertEquals(1, le.randomNum(1, 1));
-    }
 }

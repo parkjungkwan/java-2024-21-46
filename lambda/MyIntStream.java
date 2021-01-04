@@ -8,7 +8,9 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MyIntStream {
-    public List<Integer> returnList(int a, int b) {
+
+    // 1.
+    public List<Integer> rangeTest(int a, int b) {
         /*
          * Step 1. Classic Java List<Integer> ls = new ArrayList<>(); for (int i = 1; i
          * < 5; i++) { ls.add(i); }
@@ -29,7 +31,8 @@ public class MyIntStream {
         return i % 2 != 0;
     }
 
-    public boolean matchEven(int a) {
+    // 2. allMatch()
+    public boolean allMatchEvenTest(int a) {
         return IntStream.of(a).allMatch(MyIntStream::evenNumber);
     }
 
@@ -48,19 +51,16 @@ public class MyIntStream {
         return map;
     }
 
-    public void testBox() {
-        IntStream i = IntStream.of(1, 2, 3, 4);
-        Stream<Integer> s = i.boxed();
-        s.forEach(System.out::print);
+    // 3. of()
+    public Stream<Integer> ofBoxTest() {
+        // returns a Stream consisting of the elements of this stream
+        return IntStream.of(1, 2, 3, 4).boxed();
     }
 
     public static void main(String[] args) {
         MyIntStream mi = new MyIntStream();
-        int a = mi.randomNum(1, 1);
-        // System.out.println("Random: " + a);
-
-        boolean t = mi.matchEven(2);
-        // System.out.println(t);
-        mi.testBox();
+        System.out.println("Random: " + mi.randomNum(1, 1));
+        System.out.println(mi.allMatchEvenTest(2));
+        mi.ofBoxTest().forEach(System.out::print);
     }
 }
