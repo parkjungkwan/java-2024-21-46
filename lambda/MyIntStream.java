@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MyIntStream {
-
+    // 1
     public List<Integer> rangeTest(int a, int b) {
         /*
          * Step 1. Classic Java List<Integer> ls = new ArrayList<>(); for (int i = 1; i
@@ -23,32 +23,13 @@ public class MyIntStream {
         return IntStream.range(a, b).boxed().collect(Collectors.toList());
     }
 
-    public static boolean evenNumber(int i) {
+    // 2. allMatch()
+    private static boolean evenNumber(int i) {
         return i % 2 == 0;
     }
 
-    public static boolean oddNumber(int i) {
-        return i % 2 != 0;
-    }
-
-    // 2. allMatch()
     public boolean allMatchEvenTest(int a) {
         return IntStream.of(a).allMatch(MyIntStream::evenNumber);
-    }
-
-    public int randomNum(int a, int b) {
-
-        return (int) ((Math.random() * b) + a);
-    }
-
-    public Map<String, Object> returnMap() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("1", "a");
-        map.put("2", "b");
-        map.put("3", "c");
-        map.put("4", "e");
-
-        return map;
     }
 
     // 3. of()
@@ -123,8 +104,8 @@ public class MyIntStream {
     }
 
     // 16
-    public List<Integer> mapTest() {
-        return IntStream.range(1, 5).map(i -> i * 2).boxed().collect(Collectors.toList());
+    public List<Integer> mapTest(int a, int b) {
+        return IntStream.range(a, b).map(i -> i * 2).boxed().collect(Collectors.toList());
     }
 
     // 17
@@ -139,7 +120,9 @@ public class MyIntStream {
 
     public static void main(String[] args) {
         MyIntStream mi = new MyIntStream();
-        // System.out.println("Random: " + mi.randomNum(1, 1));
+        // 1.
+        System.out.println(mi.rangeTest(1, 5));
+        // 2.
         // System.out.println(mi.allMatchEvenTest(2));
         // 3. mi.ofBoxTest().forEach(System.out::print);
         // 4. mi.concatTest().forEach(System.out::print);
@@ -154,9 +137,10 @@ public class MyIntStream {
         // 13. System.out.println(mi.flatMapTest());
         // 14. System.out.println(mi.generateTest());
         // 15. System.out.println(mi.iterateTest());
-        // 16. System.out.println(mi.mapTest());
+        // 16.
+        // System.out.println(mi.mapTest(1, 5));
         // 17. System.out.println(mi.maxTest());
-        System.out.println(mi.peekTest());
+        // System.out.println(mi.peekTest());
 
     }
 }
